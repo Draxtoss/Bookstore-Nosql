@@ -1,0 +1,46 @@
+{% extends 'base.html.twig' %}
+{% form_theme registrationForm 'bootstrap_5_layout.html.twig' %}
+{% block title %}Register{% endblock %}
+{% block body %}
+<p>
+<p>
+<p>
+<p>
+<p>
+<p>
+<p>
+<p>
+<p>
+<p>
+<p>
+<p>
+<p>
+<p>
+<p>
+<p>
+<p>
+<p>
+<p>
+<p>
+<p>
+   <div class="row">
+       <div class="col-6 offset-3">
+           <div class="card bg-light">
+               <div class="card-body">
+                   <h1 class="text-center">Register</h1>
+                   {{ form_start(registrationForm) }}
+                       {{ form_row(registrationForm.email) }}
+                       {{ form_row(registrationForm.plainPassword, {
+            label: 'Password'
+        }) }}
+                       {{ form_row(registrationForm.agreeTerms) }}
+                                         <div class="d-flex justify-content-center mx-4 mb-3 mb-lg-4">
+                    <button type="button" class="btn btn-primary btn-lg">Register</button>
+                  </div>
+                   {{ form_end(registrationForm) }}
+                   
+               </div>
+           </div>
+       </div>
+   </div>
+{% endblock %}

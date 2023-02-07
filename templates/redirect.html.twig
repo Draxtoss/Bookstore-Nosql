@@ -1,0 +1,6 @@
+{% block body %}
+    <p>You are not allowed to access this page. Redirecting in {{ time }} seconds...</p>
+    {% autoescape false %}
+        <meta http-equiv="refresh" content="{{ time }};url={{ url }}" />
+    {% endautoescape %}
+{% endblock %}

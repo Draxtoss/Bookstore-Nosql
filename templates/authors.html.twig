@@ -1,0 +1,37 @@
+{% extends 'base.html.twig' %}
+
+{% block title %}List of Books{% endblock %}
+
+{% block body %}
+    <center> <h1 class="text-color-white">List of Books</h1>
+    <table class="table ">
+        <thead>
+            <tr>
+                <th>Title</th>
+                <th>Author</th>
+                <th>Pages</th>
+                <th>Publication Date</th>
+                <th>Genre</th>
+                {% if is_granted('ROLE_ADMIN') %}
+                <th>function</th>
+                {% endif %}
+            </tr>
+        </thead>
+        <tbody>
+            {% for book in books %}
+                <tr>
+                    <td>{{ book.Title }}</td>
+                    <td>{{ book.Author ? book.Author.Name }}</td>
+                    <td>{{ book.Pages }}</td>
+                    <td>{{ book.PublicationDate|date("d/m/Y") }}</td>
+                    <td>{{ book.Genre }}</td>
+                    {% if is_granted('ROLE_ADMIN') %}
+                    <td><a class="btn btn-danger"  role="button" href="{{ path('delete_book', {'id': book.id}) }}">Delete</a>
+                    <a  class="btn btn-success" role="button" href="{{ path('edit_book', {'id': book.id}) }}">Edit</a>
+                    </td>
+                    {% endif %}
+                </tr>
+            {% endfor %}
+        </tbody>
+    </table>
+{% endblock %}

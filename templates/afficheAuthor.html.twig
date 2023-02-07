@@ -1,0 +1,35 @@
+{% extends 'base.html.twig' %}
+
+{% block title %}List of Authors{% endblock %}
+
+{% block body %}
+    <center> <h1 class="text-color-white">List of Authors</h1>
+    <table class="table ">
+        <thead>
+            <tr>
+                <th>Name</th>
+                <th>Sexe</th>
+                <th>Date of birth</th>
+                <th>Nationality</th>
+                {% if is_granted('ROLE_ADMIN') %}
+                <th>function</th>
+                {% endif %}
+            </tr>
+        </thead>
+        <tbody>
+            {% for item in data %}
+                <tr>
+                    <td><a href="{{ path('AuthorsBooks', {'authorName': item.Name }) }}">{{ item.Name   }}</a></td>
+                    <td>{{ item.Sexe }}</td>
+                    <td>{{ item.BirthDate |date("d/m/Y") }}</td>
+                    <td>{{ item.Nationality }}</td>
+                    {% if is_granted('ROLE_ADMIN') %}
+                    <td>
+                    <a  class="btn btn-success" role="button" href="{{ path('editAuthor', {'name': item.Name }) }}">Edit</a>
+                    </td>
+                    {% endif %}
+                </tr>
+            {% endfor %}
+        </tbody>
+    </table>
+{% endblock %}

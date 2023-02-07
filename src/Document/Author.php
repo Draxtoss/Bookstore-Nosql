@@ -1,21 +1,29 @@
 <?php
 
 namespace App\Document;
-
+use Doctrine\ODM\MongoDB\Mapping\Annotations as MongoDB;
+use Symfony\Component\Validator\Constraints as Assert;
 /** @MongoDB\EmbeddedDocument */
 class Author
 {
-    /** @MongoDB\Field(type="string") */
+    /** @MongoDB\Field(type="string")
+     * @Assert\NotBlank
+     */
     private $Name;
-    /** @MongoDB\Field(type="string") */
+    /** @MongoDB\Field(type="string")
+     * @Assert\Choice(choices={"male", "female","Female","Male"}, message="Please select a valid gender.")
+     * @Assert\NotBlank
+     */
     private $Sexe;
-    /** @MongoDB\Field(type="date") */
+    /** @MongoDB\Field(type="date")*/
     private $BirthDate;
-    /** @MongoDB\Field(type="string") */
+    /** @MongoDB\Field(type="string")
+     * @Assert\NotBlank
+     */
     private $Nationality;
 
     /**
-     * @return mixed
+     * @return mixed 
      */
     public function getName()
     {

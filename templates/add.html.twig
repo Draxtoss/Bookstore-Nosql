@@ -1,0 +1,12 @@
+{% extends 'base.html.twig' %}
+{% form_theme form 'bootstrap_5_layout.html.twig' %}
+{% block body %}
+{% if not is_granted('ROLE_ADMIN') %}
+    {% set url = path('Index') %}
+    {% set time = 3 %}
+    {% include 'redirect.html.twig' with {'url': url, 'time': time} %}
+{% else %}
+    <center><h1>Add Book</h1></center>
+    {{form(form)}}
+{% endif %}
+{% endblock %}
